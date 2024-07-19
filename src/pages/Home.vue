@@ -15,26 +15,12 @@ export default {
   },
   methods : {
 
-    // async getUser(){  
-      
-    //   try {
-    //     const res = await axios.get('user/')
-    //     localStorage.setItem('user', JSON.stringify(res.data.data));
-    //   } catch (error) {
-    //     await this.$router.push('/login')
-    //   }
-
-    // },
     async getConcerts(){
 
-      try {
         const res = await axios.get('concert/')
         this.concerts = res.data;
         this.isLoaded = true;
-      } catch (error) {
-        await this.$router.push('/login')
-      }
-
+      
     }
 
   },
@@ -42,7 +28,6 @@ export default {
     
   },
   mounted(){
-    // this.getUser();
     this.getConcerts();
   }
 }
@@ -70,19 +55,19 @@ export default {
         <div class="mt-4">
           <p class="d-flex align-items-center mb-2">
             <img src="https://openui.fly.dev/openui/24x24.svg?text=📍" alt="Location icon" class="me-2"/>
-            Città: <span class="ms-1">{{ concert.city }}</span>
+            <span class="bold">Città:</span> <span class="ms-1">{{ concert.city }}</span>
           </p>
           <p class="d-flex align-items-center mb-2">
             <img src="https://openui.fly.dev/openui/24x24.svg?text=📅" alt="Date icon" class="me-2"/>
-            Data: <span class="ms-1">{{ concert.reply[2] }}/{{ concert.reply[1] }}/{{ concert.reply[0] }}</span>
+            <span class="bold">Data:</span> <span class="ms-1">{{ concert.reply[2] }}/{{ concert.reply[1] }}/{{ concert.reply[0] }}</span>
           </p>
           <p class="d-flex align-items-center mb-2">
             <img src="https://openui.fly.dev/openui/24x24.svg?text=🎟️" alt="Tickets icon" class="me-2"/>
-            Biglietti disponibili: <span class="ms-1">{{ concert.qtyAvailable }}</span>
+            <span class="bold">Biglietti disponibili:</span> <span class="ms-1">{{ concert.qtyAvailable }}</span>
           </p>
           <p class="d-flex align-items-center mb-4">
             <img src="https://openui.fly.dev/openui/24x24.svg?text=💶" alt="Price icon" class="me-2"/>
-            Prezzo del biglietto: <span class="ms-1">{{ concert.unitPrice }} &euro;</span>
+            <span class="bold">Prezzo del biglietto:</span> <span class="ms-1">{{ concert.unitPrice }} &euro;</span>
           </p>
         </div>
       </router-link>
@@ -125,6 +110,9 @@ a{
     font-size: 24px;
     color: white;
     text-align: center;
+  }
+  .bold{
+    font-weight: bold;
   }
 }
 

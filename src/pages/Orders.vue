@@ -18,16 +18,12 @@ export default {
 
     async getOrders(){
       const userId = JSON.parse(localStorage.getItem('user')).id;
-      try{
-        const response = await axios.get('ticket/tickets/' + userId);
-        this.orders = response.data;
-        if(this.orders.length == 0){
-          this.isEmpty = true;
-        }
-        this.isLoaded = true;
-      } catch(error){
-        await this.$router.push('/login')
+      const response = await axios.get('ticket/tickets/' + userId);
+      this.orders = response.data;
+      if(this.orders.length == 0){
+        this.isEmpty = true;
       }
+      this.isLoaded = true;
     }
 
   },

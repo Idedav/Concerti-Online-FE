@@ -17,7 +17,6 @@ export default {
 
     async getOrder(){
       const userId = JSON.parse(localStorage.getItem('user')).id;
-      try {
         const response = await axios.get('ticket/' + this.$route.params.idOrder); 
         if(response.data.user.id != userId){
           await this.$router.push('/unauthorized');
@@ -25,9 +24,6 @@ export default {
         }
         this.order = response.data;
         this.isLoaded = true;
-      } catch (error) {
-        await this.$router.push('/login')
-      }
     },
     formatTypePayment(typePayment){
 

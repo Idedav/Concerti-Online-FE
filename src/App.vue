@@ -4,7 +4,6 @@ import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import { store } from "./data/store.js";
 
-
 export default {
   name : 'App',
   components : {

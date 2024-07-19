@@ -21,14 +21,10 @@ export default {
 
     async getConcert(){
 
-      try {
         const res = await axios.get('concert/' + this.$route.params.idConcert)
         this.concert = res.data;
         this.calcPrice();
         this.isLoaded = true;
-      } catch (error) {
-        await this.$router.push('/login')
-      }
 
     },
     handleAddPassenger(){
@@ -55,7 +51,6 @@ export default {
         return;
       }
       const idUser = JSON.parse(localStorage.getItem('user')).id;
-      try {
         const res = await axios.post('ticket/',{
           "idUser": idUser,
           "idConcert": this.concert.idConcert,
@@ -63,9 +58,6 @@ export default {
           "typePayment": this.typePayment,
         })
         await this.$router.push('/orders');
-      } catch (error) {
-        await this.$router.push('/login');
-      }
 
     }
 

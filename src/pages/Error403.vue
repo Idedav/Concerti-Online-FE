@@ -9,8 +9,8 @@ export default {
 <template>
 
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
-      <h1>ERROR401</h1>
-      <p>Non sei autorizzato a visualizzare questa pagina.</p>
+      <h1>ERROR403</h1>
+      <p>Non sei autorizzato ad accedere a questa risorsa.</p>
       <div class="btn-home">
         <router-link :to="{name: 'home'}">Torna alla home</router-link>
       </div>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { router } from './router';
 
 // IMPOSTAZIONE DI DEFAULT PER LA BASE URL
 axios.defaults.baseURL = "http://localhost:8080/concert-on/";
@@ -29,21 +30,22 @@ axios.interceptors.response.use(resp => resp, async error =>{
       refresh = true;
       try {
         const response = await axios.post('auth/refresh-token');
-        localStorage.setItem('access_token', response.data.data.access_token);
-        localStorage.setItem('refresh_token', response.data.data.refresh_token);
-
+        
         if (response.status === 200) {
+          localStorage.setItem('access_token', response.data.data.access_token);
+          localStorage.setItem('refresh_token', response.data.data.refresh_token);
+          refresh = false;
           // Riprova la richiesta originale con il nuovo token
           return axios(error.config);
         }
+        throw "errore";
       } catch (refreshError) {
         localStorage.removeItem('refresh_token');
         localStorage.removeItem('access_token');
         localStorage.removeItem('user');
-        await this.$router.push('/login');
+        router.push('/login');
       }
     }
     refresh = false;
     return Promise.reject(error);
 })
-

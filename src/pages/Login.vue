@@ -37,13 +37,9 @@ export default {
     },
     async getUser(){  
       
-      try {
         const res = await axios.get('user/')
         localStorage.setItem('user', JSON.stringify(res.data.data));
         this.$router.push('/');
-      } catch (error) {
-        await this.$router.push('/login')
-      }
 
     }
 
